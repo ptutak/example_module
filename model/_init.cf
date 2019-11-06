@@ -1,0 +1,5 @@
+import example_module
+
+example_module::hello()
+
+std::print(example_module::upper("hihihi"))
