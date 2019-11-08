@@ -1,0 +1,23 @@
+import example_module
+
+entity Person:
+    string name
+    string address
+    Employer employer
+end
+
+index Person(name)
+
+implementation Employee for Person:
+    number salary
+end
+
+implement Person using Employee when example_module::is_employee(self)
+
+implementation Employer for Person:
+    Employee[] emploees
+end
+
+implement Person using Employer when example_module::is_employer(self)
+
+Employer::emploees [1:] -- Employee.employer [1]
