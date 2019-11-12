@@ -6,13 +6,14 @@ entity Employee:
     number salary
 end
 
-implement Person using std::none
+index Employee(name)
+
+implement Employee using std::none
 
 entity Employer:
     string name
-    Employee[] employees
 end
 
 implement Employer using std::none
 
-employer::emploees [0:] -- employee.employer
+Employer.employees [0:] -- Employee
