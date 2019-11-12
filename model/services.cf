@@ -5,9 +5,10 @@ entity Person:
     string address
 end
 
-#implementation employee for Person:
-#    number salary
-#end
+implementation piotr for Person:
+    name = "Piotr Tutak"
+    number salary
+end
 
 #implement Person using employee when example_module::is_employee(self)
 
