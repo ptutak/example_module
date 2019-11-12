@@ -21,9 +21,3 @@ end
 implement Person using Employer when example_module::is_employer(self)
 
 Employer::emploees [0:] -- Employee.employer [1]
-
-Przemek = Employer()
-
-Piotr = Employee()
-
-Przemek.emploees = Piotr
