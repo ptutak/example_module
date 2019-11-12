@@ -1,16 +1,16 @@
 #import example_module
 
 entity Person:
-    string name
-    string address
+    string name = "Piotr"
+    string address = ""
 end
 
 implementation piotr for Person:
     name = "Piotr Tutak"
-    number salary
+    address = ""
 end
 
-#implement Person using employee when example_module::is_employee(self)
+implement Person using std::none
 
 #implementation employer for Person:
 #    Person[] emploees = []
