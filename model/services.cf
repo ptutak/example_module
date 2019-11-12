@@ -5,16 +5,16 @@ entity Person:
     string address
 end
 
-implementation employee for Person:
-    number salary
-end
+#implementation employee for Person:
+#    number salary
+#end
 
 #implement Person using employee when example_module::is_employee(self)
 
-implementation employer for Person:
-    Person[] emploees = []
-end
+#implementation employer for Person:
+#    Person[] emploees = []
+#end
 
 #implement Person using employer when example_module::is_employer(self)
 
-employer::emploees [0:] -- employee.employer
+#employer::emploees [0:] -- employee.employer
