@@ -1,20 +1,20 @@
-// import example_module
+//import example_module
 
 entity Person:
     string name
     string address
 end
 
-implementation Employee for Person:
-    number salary
-end
+//implementation employee for Person:
+//    number salary
+//end
 
-// implement Person using Employee when example_module::is_employee(self)
+//implement Person using employee when example_module::is_employee(self)
 
-implementation Employer for Person:
-    Person[] emploees = []
-end
+//implementation employer for Person:
+//    Person[] emploees = []
+//end
 
-// implement Person using Employer when example_module::is_employer(self)
+//implement Person using employer when example_module::is_employer(self)
 
-Employer::emploees [0:] -- Employee.employer
+//employer::emploees [0:] -- employee.employer
