@@ -1,21 +1,18 @@
 #import example_module
 
-entity Person:
-    string name = "Piotr"
-    string address = ""
-end
-
-implementation piotr for Person:
-    name = "Piotr Tutak"
-    address = ""
+entity Employee:
+    string name
+    string address
+    number salary
 end
 
 implement Person using std::none
 
-#implementation employer for Person:
-#    Person[] emploees = []
-#end
+entity Employer:
+    string name
+    Employee[] employees
+end
 
-#implement Person using employer when example_module::is_employer(self)
+implement Employer using std::none
 
-#employer::emploees [0:] -- employee.employer
+employer::emploees [0:] -- employee.employer
