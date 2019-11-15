@@ -14,6 +14,10 @@ entity Employer:
     string name
 end
 
-implement Employer using std::none
+implementation iEmployer for Employer:
+    name = "iEmployer"
+end
+
+implement Employer using iEmployer when true
 
 Employer.employees [0:] -- Employee
