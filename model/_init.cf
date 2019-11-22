@@ -1,4 +1,5 @@
 import example_module
+import example_module::services
 
 example_module::hello()
 

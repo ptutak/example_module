@@ -8,13 +8,14 @@ def hello():
 def upper(value: "string") -> "string":
     return value.upper()
 
-"""
+
 @plugin
-def is_employee(person: "Person") -> "bool":
+def is_employee(person: "example_module::services::Employee") -> "bool":
     if person.name == 'Piotr Tutak':
         return True
     return False
 
+"""
 @plugin
 def is_employer(person: "Person") -> "bool":
     if person.name == "Przemyslaw Wawrzynczak":

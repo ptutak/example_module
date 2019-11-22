@@ -2,22 +2,35 @@
 
 entity Employee:
     string name
-    string address
-    number salary
+    string address = ""
+    number salary = 0
 end
 
-index Employee(name)
+implementation standardEmployee for Employee:
+    self.name = "Piotr Tutak"
+end
 
+implement Employee using standardEmployee when (self.address == "Szczygla 7")
 implement Employee using std::none
+
+index Employee(address)
 
 entity Employer:
     string name
 end
 
-implementation iEmployer for Employer:
-    name = "iEmployer"
+implement Employer using std::none
+
+entity InheritedEmployee:
+    string test
 end
 
-implement Employer using iEmployer when true
+implementation myInheritedEmployee for InheritedEmployee:
+    uga = 444
+    helga = "asdf"
+    self.test = "{{ uga }}, {{ helga }}"
+end
+
+implement InheritedEmployee using myInheritedEmployee
 
 Employer.employees [0:] -- Employee
