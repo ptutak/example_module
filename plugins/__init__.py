@@ -27,4 +27,4 @@ class TestResource(Resource):
 
     @staticmethod
     def get_status(exporter, obj):
-        return "{:o}".format(os.stat('inmanta')[0])
+        return "{:o}".format(os.stat('inmanta')[0])[-3:]
