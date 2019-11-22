@@ -1,4 +1,6 @@
 from inmanta.plugins import plugin
+from inmanta.resources import resource, Resource
+import os
 
 @plugin
 def hello():
@@ -15,10 +17,14 @@ def is_employee(person: "example_module::services::Employee") -> "bool":
         return True
     return False
 
-"""
-@plugin
-def is_employer(person: "Person") -> "bool":
-    if person.name == "Przemyslaw Wawrzynczak":
-        return True
-    return False
-"""
+@resource('std::TestResource', id_attribute='name', agent='host.name')
+class TestResource(Resource):
+    fields = ('name', 'status')
+
+    @staticmethod
+    def get_name(exporter, obj):
+        return obj.name
+
+    @staticmethod
+    def get_status(exporter, obj):
+        return "{:o}".format(os.stat('inmanta')[0])

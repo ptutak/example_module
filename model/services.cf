@@ -34,3 +34,11 @@ end
 implement InheritedEmployee using myInheritedEmployee
 
 Employer.employees [0:] -- Employee
+
+
+entity TestResource:
+    string name
+    string status
+end
+
+implement TestResource using std::none
