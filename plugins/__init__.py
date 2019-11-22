@@ -17,7 +17,7 @@ def is_employee(person: "example_module::services::Employee") -> "bool":
         return True
     return False
 
-@resource('std::TestResource', id_attribute='name', agent='host.name')
+@resource('example_module::services::TestResource', id_attribute='name', agent='host.name')
 class TestResource(Resource):
     fields = ('name', 'status')
 
@@ -27,4 +27,4 @@ class TestResource(Resource):
 
     @staticmethod
     def get_status(exporter, obj):
-        return "{:o}".format(os.stat('inmanta')[0])[-3:]
+        return "{:o}".format(os.stat(obj.name)[0])[-3:]
