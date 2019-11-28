@@ -17,14 +17,34 @@ def is_employee(person: "example_module::services::Employee") -> "bool":
         return True
     return False
 
-@resource('example_module::services::TestResource', id_attribute='name', agent='host.name')
-class TestResource(Resource):
-    fields = ('name', 'status')
+@plugin
+def out(employee_list: "example_module::services::Employee[]") -> "std::none":
+    print(employee_list[0].__dict__['__instance'])
+    print(employee_list[0]._get_instance().get_attribute('name').get_value())
 
+
+
+class TestResourceImpl:
     @staticmethod
     def get_name(exporter, obj):
         return obj.name
 
     @staticmethod
     def get_status(exporter, obj):
+        print("get_status called")
         return "{:o}".format(os.stat(obj.name)[0])[-3:]
+
+    @staticmethod
+    def get_some_field(exporter, obj):
+        print('get_some_field called')
+        return obj.some_field.name
+
+"""
+@resource('example_module::services::TestResource', id_attribute='name', agent='vm1')
+class TestResource(Resource):
+    fields = ('name', 'status', 'some_field')
+    map = {
+        "name": TestResourceImpl.get_name,
+        "status": TestResourceImpl.get_status,
+        "some_field": TestResourceImpl.get_some_field}
+"""

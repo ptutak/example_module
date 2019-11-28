@@ -35,10 +35,20 @@ implement InheritedEmployee using myInheritedEmployee
 
 Employer.employees [0:] -- Employee
 
+entity Field:
+    string name = ""
+end
+
+implement Field using std::none
 
 entity TestResource:
     string name
-    string status
+    string status = ""
+    string agent="internal"
 end
+
+index TestResource(name)
+
+TestResource.some_field [0:1] -- Field
 
 implement TestResource using std::none
