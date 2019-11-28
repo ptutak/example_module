@@ -1,4 +1,4 @@
-#import example_module
+import example_module
 
 entity Employee:
     string name
