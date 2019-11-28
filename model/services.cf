@@ -1,5 +1,3 @@
-import example_module
-
 entity Employee:
     string name
     string address = ""
@@ -11,7 +9,7 @@ implementation standardEmployee for Employee:
 end
 
 implement Employee using standardEmployee when (self.address == "Szczygla 7")
-implement Employee using std::none
+implement Employee using std::none when (self.address != "Szczygla 7")
 
 index Employee(address)
 
@@ -20,6 +18,8 @@ entity Employer:
 end
 
 implement Employer using std::none
+
+Employer.employees [0:] -- Employee
 
 entity InheritedEmployee:
     string test
@@ -32,8 +32,6 @@ implementation myInheritedEmployee for InheritedEmployee:
 end
 
 implement InheritedEmployee using myInheritedEmployee
-
-Employer.employees [0:] -- Employee
 
 entity Field:
     string name = ""
