@@ -39,12 +39,8 @@ class TestResourceImpl:
         print('get_some_field called')
         return obj.some_field.name
 
-"""
-@resource('example_module::services::TestResource', id_attribute='name', agent='vm1')
+
+@resource('example_module::services::TestResource', id_attribute='name', agent='internal')
 class TestResource(Resource):
     fields = ('name', 'status', 'some_field')
-    map = {
-        "name": TestResourceImpl.get_name,
-        "status": TestResourceImpl.get_status,
-        "some_field": TestResourceImpl.get_some_field}
-"""
+    map = {"some_field": TestResourceImpl.get_some_field}
