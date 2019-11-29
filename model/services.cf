@@ -47,6 +47,4 @@ end
 
 index TestResource(name)
 
-TestResource.some_field [0:1] -- Field
-
 implement TestResource using std::none

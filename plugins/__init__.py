@@ -37,7 +37,7 @@ class TestResourceImpl:
     @staticmethod
     def get_some_field(exporter, obj):
         print('get_some_field called')
-        return obj.some_field.name
+        return "this is a string from this method"
 
 
 @resource('example_module::services::TestResource', id_attribute='name', agent='internal')
