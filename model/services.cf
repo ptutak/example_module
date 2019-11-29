@@ -47,6 +47,7 @@ entity TestResource:
     string name
     string status = ""
     string some_field = ""
+    string agent="internal"
 end
 
 index TestResource(name)
