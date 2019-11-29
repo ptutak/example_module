@@ -28,9 +28,9 @@ entity InheritedEmployee:
 end
 
 implementation myInheritedEmployee for InheritedEmployee:
-    uga = 444
-    helga = "asdf"
-    self.test = "{{ uga }}, {{ helga }}"
+    first = 444
+    second = "asdf"
+    self.test = "{{ first }}, {{ second }}"
 end
 
 implement InheritedEmployee using myInheritedEmployee
@@ -47,7 +47,7 @@ entity TestResource:
     string name
     string status = ""
     string some_field = ""
-    string agent="internal"
+    string agent_name_field="internal"
 end
 
 index TestResource(name)

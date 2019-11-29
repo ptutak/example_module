@@ -32,18 +32,19 @@ class TestResourceImpl:
 
     @staticmethod
     def get_status(exporter, obj):
-        print("get_status called")
-        return "{:o}".format(os.stat(obj.name)[0])[-3:]
+        print("get_status method called")
+        return "this is a return value from get_status method"
 
     @staticmethod
     def get_some_field(exporter, obj):
-        print('get_some_field called')
-        return "this is a string from this method"
+        print('get_some_field method called')
+        return "this is a return value from get_some_field method"
 
 
-@resource('example_module::services::TestResource', id_attribute='name', agent='internal')
+@resource('example_module::services::TestResource', id_attribute='name', agent='agent_name_field')
 class TestResource(Resource):
     fields = ('name', 'status', 'some_field')
     map = {
         "some_field": TestResourceImpl.get_some_field,
-        "name": TestResourceImpl.get_name}
+        "name": TestResourceImpl.get_name,
+        "status": TestResourceImpl.get_status}
