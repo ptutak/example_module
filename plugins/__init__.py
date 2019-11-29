@@ -27,6 +27,7 @@ def out(employee_list: "example_module::services::Employee[]") -> "std::none":
 class TestResourceImpl:
     @staticmethod
     def get_name(exporter, obj):
+        print("get_name method from resource called")
         return obj.name
 
     @staticmethod
@@ -43,4 +44,6 @@ class TestResourceImpl:
 @resource('example_module::services::TestResource', id_attribute='name', agent='internal')
 class TestResource(Resource):
     fields = ('name', 'status', 'some_field')
-    map = {"some_field": TestResourceImpl.get_some_field}
+    map = {
+        "some_field": TestResourceImpl.get_some_field,
+        "name": TestResourceImpl.get_name}

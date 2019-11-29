@@ -13,6 +13,7 @@ implement Employee using std::none when (self.address != "Szczygla 7")
 
 index Employee(address)
 
+
 entity Employer:
     string name
 end
@@ -20,6 +21,7 @@ end
 implement Employer using std::none
 
 Employer.employees [0:] -- Employee
+
 
 entity InheritedEmployee:
     string test
@@ -33,16 +35,18 @@ end
 
 implement InheritedEmployee using myInheritedEmployee
 
+
 entity Field:
     string name = ""
 end
 
 implement Field using std::none
 
+
 entity TestResource:
     string name
     string status = ""
-    string agent="internal"
+    string some_field = ""
 end
 
 index TestResource(name)
