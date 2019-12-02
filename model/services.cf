@@ -38,6 +38,7 @@ implement InheritedEmployee using myInheritedEmployee
 
 entity Field:
     string name = ""
+    bool to_dict = true
 end
 
 implement Field using std::none
