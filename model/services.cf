@@ -40,11 +40,7 @@ entity Field:
     string name = ""
 end
 
-implementation stdField for Field:
-    self.to_dict = std::print
-end
-
-implement Field using stdField
+implement Field using std::none
 
 
 entity TestResource extends std::PurgeableResource:

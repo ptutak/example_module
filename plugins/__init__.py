@@ -23,10 +23,6 @@ def out(employee_list: "example_module::services::Employee[]") -> "std::none":
     print(employee_list[0].__dict__['__instance'])
     print(employee_list[0]._get_instance().get_attribute('name').get_value())
 
-@plugin
-def to_dict() -> "std::none":
-    return {"name": "my_name"}
-
 class TestResourceImpl:
     @staticmethod
     def get_name(exporter, obj):
@@ -46,7 +42,7 @@ class TestResourceImpl:
 
 @resource('example_module::services::TestResource', id_attribute='name', agent='agent_name_field')
 class TestResource(PurgeableResource):
-    fields = ('name', 'status', 'some_field', 'field')
+    fields = ('name', 'status', 'some_field')
     map = {
         "some_field": TestResourceImpl.get_some_field,
         "name": TestResourceImpl.get_name,
