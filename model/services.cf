@@ -1,3 +1,5 @@
+import
+
 entity Employee:
     string name
     string address = ""
@@ -43,7 +45,7 @@ end
 implement Field using std::none
 
 
-entity TestResource:
+entity TestResource extends std::PurgeableResource:
     string name
     string status = ""
     string some_field = ""

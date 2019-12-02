@@ -56,7 +56,6 @@ class TestResourceHandler(CRUDHandler):
     def read_resource(self, context: HandlerContext, resource: TestResource) -> None:
         pass
 
-
     def create_resource(self, context: HandlerContext, resource: TestResource) -> None:
         context.set_created()
 
