@@ -1,5 +1,3 @@
-import
-
 entity Employee:
     string name
     string address = ""
