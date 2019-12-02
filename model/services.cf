@@ -54,8 +54,4 @@ index TestResource(name)
 
 TestResource.field[0:1] -- Field
 
-implementation stdTestResource for TestResource:
-    self.field = undef
-end
-
-implement TestResource using stdTestResource
+implement TestResource using std::none
