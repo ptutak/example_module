@@ -52,6 +52,6 @@ end
 
 index TestResource(name)
 
-TestResource.field[0..1] -- Field
+TestResource.field[0:1] -- Field
 
 implement TestResource using std::none
