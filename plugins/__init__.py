@@ -23,7 +23,9 @@ def out(employee_list: "example_module::services::Employee[]") -> "std::none":
     print(employee_list[0].__dict__['__instance'])
     print(employee_list[0]._get_instance().get_attribute('name').get_value())
 
-
+@plugin
+def to_dict() -> "std::none":
+    return {"name": "my_name"}
 
 class TestResourceImpl:
     @staticmethod

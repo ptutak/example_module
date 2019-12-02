@@ -38,10 +38,13 @@ implement InheritedEmployee using myInheritedEmployee
 
 entity Field:
     string name = ""
-    bool to_dict = true
 end
 
-implement Field using std::none
+implementation stdField for Field:
+    self.to_dict = std::print
+end
+
+implement Field using stdField
 
 
 entity TestResource extends std::PurgeableResource:
