@@ -56,11 +56,12 @@ class TestResourceHandler(CRUDHandler):
     def read_resource(self, context: HandlerContext, resource: TestResource) -> None:
         pass
 
+
     def create_resource(self, context: HandlerContext, resource: TestResource) -> None:
-        pass
+        context.set_created()
 
     def update_resource(self, context: HandlerContext, resource: TestResource) -> None:
-        pass
+        context.set_updated()
 
     def delete_resource(self, context: HandlerContext, resource: TestResource) -> None:
         pass
