@@ -1,5 +1,6 @@
 from inmanta.plugins import plugin
-from inmanta.resources import resource, Resource
+from inmanta.agent.handler import provider, HandlerContext, CRUDHandler
+from inmanta.resources import resource, Resource, PurgeableResource
 import os
 
 @plugin
@@ -42,9 +43,24 @@ class TestResourceImpl:
 
 
 @resource('example_module::services::TestResource', id_attribute='name', agent='agent_name_field')
-class TestResource(Resource):
+class TestResource(PurgeableResource):
     fields = ('name', 'status', 'some_field')
     map = {
         "some_field": TestResourceImpl.get_some_field,
         "name": TestResourceImpl.get_name,
         "status": TestResourceImpl.get_status}
+
+
+@provider('example_module::services::TestResource', name='test_resource')
+class TestResourceHandler(CRUDHandler):
+    def read_resource(self, context: HandlerContext, resource: TestResource) -> None:
+        pass
+
+    def create_resource(self, context: HandlerContext, resource: TestResource) -> None:
+        pass
+
+    def update_resource(self, context: HandlerContext, resource: TestResource) -> None:
+        pass
+
+    def delete_resource(self, context: HandlerContext, resource: TestResource) -> None:
+        pass
