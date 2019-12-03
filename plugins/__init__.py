@@ -43,7 +43,7 @@ class TestResourceImpl:
     def get_field(exporter, obj):
         print('get_field method called')
         obj_names = []
-        for x in obj:
+        for x in obj.field:
             obj_names.append(x.name)
         return str(obj_names)
 
