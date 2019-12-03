@@ -39,14 +39,22 @@ class TestResourceImpl:
         print('get_some_field method called')
         return "this is a return value from get_some_field method"
 
+    @staticmethod
+    def get_field(exporter, obj):
+        print('get_field method called')
+        obj_names = []
+        for x in obj:
+            obj_names.append(x.name)
+        return str(obj_names)
 
 @resource('example_module::services::TestResource', id_attribute='name', agent='agent_name_field')
 class TestResource(PurgeableResource):
-    fields = ('name', 'status', 'some_field')
+    fields = ('name', 'status', 'some_field', 'field')
     map = {
         "some_field": TestResourceImpl.get_some_field,
         "name": TestResourceImpl.get_name,
-        "status": TestResourceImpl.get_status}
+        "status": TestResourceImpl.get_status,
+        "field": TestResourceImpl.get_field}
 
 
 @provider('example_module::services::TestResource', name='test_resource')
