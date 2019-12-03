@@ -38,6 +38,7 @@ implement InheritedEmployee using myInheritedEmployee
 
 entity Field:
     string name = ""
+    string temp_field = ""
 end
 
 implement Field using std::none
