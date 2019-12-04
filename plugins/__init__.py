@@ -1,5 +1,5 @@
 from inmanta.plugins import plugin
-from inmanta.agent.handler import provider, HandlerContext, CRUDHandler
+from inmanta.agent.handler import provider, HandlerContext, CRUDHandler, InvalidOperation
 from inmanta.resources import resource, Resource, PurgeableResource
 import os
 
@@ -60,13 +60,25 @@ class TestResource(PurgeableResource):
 @provider('example_module::services::TestResource', name='test_resource')
 class TestResourceHandler(CRUDHandler):
     def read_resource(self, context: HandlerContext, resource: TestResource) -> None:
-        pass
+        if self._io.file_exists(resource.name):
+            resource.content = self._io.read(resource.name)
+        raise InvalidOperation("No such file")
 
     def create_resource(self, context: HandlerContext, resource: TestResource) -> None:
+        if self._io.file_exists(resource.name):
+            self.update_resource(context, resource)
+            context.set_created()
+            return
+        self._io.put(resource.name, resource.content)
         context.set_created()
 
     def update_resource(self, context: HandlerContext, resource: TestResource) -> None:
-        context.set_updated()
+        if self._io.file_exists(resource.name):
+            self._io.put(resource.name, resource.content)
+            context.set_updated()
+        raise InvalidOperation("No such file")
 
     def delete_resource(self, context: HandlerContext, resource: TestResource) -> None:
-        pass
+        if self._io.file_exists(resource.name):
+            self._io.remove(resource.name)
+        context.set_purged()

@@ -46,7 +46,7 @@ implement Field using std::none
 
 entity TestResource extends std::PurgeableResource:
     string name
-    string name_with_no_default
+    string content
     string status = ""
     string some_field = ""
     string agent_name_field="internal"
