@@ -60,6 +60,7 @@ class TestResource(PurgeableResource):
 @provider('example_module::services::TestResource', name='test_resource')
 class TestResourceHandler(CRUDHandler):
     def read_resource(self, context: HandlerContext, resource: TestResource) -> None:
+        context.info(str(resource))
         if self._io.file_exists(resource.name):
             resource.content = self._io.read(resource.name)
         raise InvalidOperation("No such file")
