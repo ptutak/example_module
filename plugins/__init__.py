@@ -61,7 +61,7 @@ class TestResource(PurgeableResource):
 class TestResourceHandler(CRUDHandler):
     def read_resource(self, context: HandlerContext, resource: TestResource) -> None:
         context.info(str(resource))
-        print(resource.purged)
+        context.info(resource.purged)
         if self._io.file_exists(resource.name):
             resource.content = self._io.read(resource.name)
         raise InvalidOperation("No such file")
