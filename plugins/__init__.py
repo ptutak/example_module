@@ -1,5 +1,5 @@
 from inmanta.plugins import plugin
-from inmanta.agent.handler import provider, HandlerContext, CRUDHandler, InvalidOperation
+from inmanta.agent.handler import provider, HandlerContext, CRUDHandler, InvalidOperation, ResourcePurged
 from inmanta.resources import resource, Resource, PurgeableResource
 import os
 
@@ -59,28 +59,21 @@ class TestResource(PurgeableResource):
 
 @provider('example_module::services::TestResource', name='test_resource')
 class TestResourceHandler(CRUDHandler):
-    def read_resource(self, context: HandlerContext, resource: TestResource) -> None:
-        context.info(str(resource))
-        context.info(str(resource.purged))
-        if self._io.file_exists(resource.name):
-            resource.content = self._io.read(resource.name)
-        raise InvalidOperation("No such file")
+    def read_resource(self, context: HandlerContext, desired_on_input_current_on_output_resource: TestResource) -> None:
+        doicoor = desired_on_input_current_on_output_resource
+        if self._io.file_exists(doicoor.name):
+            doicoor.purged = False
+            doicoor.content = self._io.read(doicoor.name)
+        raise ResourcePurged()
 
-    def create_resource(self, context: HandlerContext, resource: TestResource) -> None:
-        if self._io.file_exists(resource.name):
-            self.update_resource(context, resource)
-            context.set_created()
-            return
-        self._io.put(resource.name, resource.content)
+    def create_resource(self, context: HandlerContext, desired_resource: TestResource) -> None:
+        self._io.put(desired_resource.name, desired_resource.content)
         context.set_created()
 
-    def update_resource(self, context: HandlerContext, resource: TestResource) -> None:
-        if self._io.file_exists(resource.name):
-            self._io.put(resource.name, resource.content)
-            context.set_updated()
-        raise InvalidOperation("No such file")
+    def update_resource(self, context: HandlerContext, desired_resource: TestResource) -> None:
+        self._io.put(desired_resource.name, desired_resource.content)
+        context.set_updated()
 
-    def delete_resource(self, context: HandlerContext, resource: TestResource) -> None:
-        if self._io.file_exists(resource.name):
-            self._io.remove(resource.name)
+    def delete_resource(self, context: HandlerContext, desired_resource: TestResource) -> None:
+        self._io.remove(desired_resource.name)
         context.set_purged()
