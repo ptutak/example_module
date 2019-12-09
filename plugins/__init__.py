@@ -63,7 +63,7 @@ class TestResourceHandler(CRUDHandler):
         doicoor = desired_on_input_current_on_output_resource
         if self._io.file_exists(doicoor.name):
             doicoor.purged = False
-            doicoor.content = self._io.read(doicoor.name)
+            doicoor.content = self._io.read_binary(doicoor.name).decode('utf-8')
             context.info(doicoor.content)
         raise ResourcePurged()
 
