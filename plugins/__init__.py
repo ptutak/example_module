@@ -72,7 +72,7 @@ class TestResourceHandler(CRUDHandler):
         self._io.put(desired_resource.name, content)
         context.set_created()
 
-    def update_resource(self, context: HandlerContext, desired_resource: TestResource) -> None:
+    def update_resource(self, context: HandlerContext, changes: dict, desired_resource: TestResource) -> None:
         content = desired_resource.content.encode('utf-8')
         self._io.put(desired_resource.name, content)
         context.set_updated()
