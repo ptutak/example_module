@@ -49,7 +49,7 @@ class TestResourceImpl:
 
 @resource('example_module::services::TestResource', id_attribute='name', agent='agent_name_field')
 class TestResource(PurgeableResource):
-    fields = ('name', 'status', 'some_field', 'field')
+    fields = ('name', 'status', 'some_field', 'field', 'content')
     map = {
         "some_field": TestResourceImpl.get_some_field,
         "name": TestResourceImpl.get_name,
