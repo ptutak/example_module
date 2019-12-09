@@ -64,6 +64,7 @@ class TestResourceHandler(CRUDHandler):
         if self._io.file_exists(doicoor.name):
             doicoor.purged = False
             doicoor.content = self._io.read(doicoor.name)
+            context.info(doicoor.content)
         raise ResourcePurged()
 
     def create_resource(self, context: HandlerContext, desired_resource: TestResource) -> None:
