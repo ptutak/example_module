@@ -65,7 +65,8 @@ class TestResourceHandler(CRUDHandler):
             doicoor.purged = False
             doicoor.content = self._io.read_binary(doicoor.name).decode('utf-8')
             context.info(doicoor.content)
-        raise ResourcePurged()
+        else:
+            raise ResourcePurged()
 
     def create_resource(self, context: HandlerContext, desired_resource: TestResource) -> None:
         content = desired_resource.content.encode('utf-8')
