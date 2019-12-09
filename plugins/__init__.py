@@ -67,11 +67,11 @@ class TestResourceHandler(CRUDHandler):
         raise ResourcePurged()
 
     def create_resource(self, context: HandlerContext, desired_resource: TestResource) -> None:
-        self._io.put(desired_resource.name, desired_resource.content)
+        self._io.put(desired_resource.name, desired_resource.content.encode())
         context.set_created()
 
     def update_resource(self, context: HandlerContext, desired_resource: TestResource) -> None:
-        self._io.put(desired_resource.name, desired_resource.content)
+        self._io.put(desired_resource.name, desired_resource.content.encode())
         context.set_updated()
 
     def delete_resource(self, context: HandlerContext, desired_resource: TestResource) -> None:
