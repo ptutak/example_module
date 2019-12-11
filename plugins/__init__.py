@@ -32,6 +32,7 @@ class TestResourceImpl:
     @staticmethod
     def get_status(exporter, obj):
         print("get_status method called")
+        exporter.info("get_status method called")
         return "this is a return value from get_status method"
 
     @staticmethod
