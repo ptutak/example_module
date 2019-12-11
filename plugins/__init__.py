@@ -61,6 +61,7 @@ class TestResource(PurgeableResource):
 class TestResourceHandler(CRUDHandler):
     def read_resource(self, context: HandlerContext, desired_on_input_current_on_output_resource: TestResource) -> None:
         doicoor = desired_on_input_current_on_output_resource
+        context.info(doicoor.status)
         if self._io.file_exists(doicoor.name):
             doicoor.purged = False
             doicoor.content = self._io.read(doicoor.name)
