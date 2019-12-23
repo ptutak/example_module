@@ -3,9 +3,11 @@ from inmanta.agent.handler import provider, HandlerContext, CRUDHandler, Invalid
 from inmanta.resources import resource, Resource, PurgeableResource
 import os
 
+
 @plugin
 def hello():
     print("Hello World! - Plugin")
+
 
 @plugin
 def upper(value: "string") -> "string":
@@ -18,10 +20,12 @@ def is_employee(person: "example_module::services::Employee") -> "bool":
         return True
     return False
 
+
 @plugin
 def out(employee_list: "example_module::services::Employee[]") -> "std::none":
     print(employee_list[0].__dict__['__instance'])
     print(employee_list[0]._get_instance().get_attribute('name').get_value())
+
 
 class TestResourceImpl:
     @staticmethod
@@ -47,6 +51,7 @@ class TestResourceImpl:
         for x in obj.field:
             obj_names.append(x.name)
         return str(obj_names)
+
 
 @resource('example_module::services::TestResource', id_attribute='name', agent='agent_name_field')
 class TestResource(PurgeableResource):
