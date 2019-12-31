@@ -1,5 +1,5 @@
-import example_module
 import example_module::services
 
+example_module::hello()
 
 std::print(example_module::upper("upper test in module init"))
